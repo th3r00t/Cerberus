@@ -6,7 +6,12 @@
  torrents.
  
  ## Configuration
- `cd cerberus/ & python3 cerberus.py`
+ `cd cerberus/`
+ 
+ `pip install -r requirements`
+ 
+ `python3 cerberus.py`
+ 
  
  After the first run you will find cerberus.ini in Cerberus's root
  directory. Set the StorageMaps section to the network or local file system
