@@ -7,7 +7,7 @@ class Config:
         self.endpoints = {}
         self.tvdbkey = ""
         self.moviedbkey = ""
-        self.storagemaps = []
+        self.storagemaps = {}
         if not Path('./cerberus.ini').is_file():
             self.mkconfig()
         else:
@@ -35,3 +35,5 @@ class Config:
         _file.read('./cerberus.ini')
         for endpoint in _file["Endpoints"]:
             self.endpoints[endpoint] = _file["Endpoints"][endpoint]
+        for _path in _file["Storage"]:
+            self.storagemaps[_path] = _file["Storage"][_path]

@@ -2,24 +2,22 @@ import asyncio
 import argparse
 import locale
 import time
-from rich.live import Live
-from rich.console import Text
-from rich.panel import Panel
+import curses
 from lib.Torrent import Client
 from lib.Display import Display
-from lib.Input import Input
 from lib.Config import Config
 from lib.Search import Search
 
 locale.setlocale(locale.LC_ALL, '')
 code = locale.getpreferredencoding()
-state = None
+state = 0
 keypress = None
 config = Config()
+magnets = []
+run = True
 Cerberus = {
     'Config': config,
-    'KeyBindings': Input().kb,
-    'TorrentManager': Client(),
+    'TorrentManager': Client(config.storagemaps),
     'Display': Display(),
     'Search': Search(config.endpoints)
 }
@@ -38,7 +36,7 @@ test_uri = 'magnet:?xt=urn:btih:3271A48DEF3084C93B11A840C55F85CADF160C63&dn\
     tracker.pirateparty.gr%3A6969%2Fannounce&tr=udp%3A%2F%2F\
     tracker.cyberia.is%3A6969%2Fannounce'
 
-logo = Text("""
+logo = """
                             : .:: ^ ~~!7777??????????777!!~^: . .:   :
                           . ^J~ .J?~^!!~^^::............::^~~!!^!J! .77 .
                         ::^.^!7^~J~??^                       :!J!7J.7~? ^::.
@@ -73,8 +71,7 @@ logo = Text("""
                                              ~?J7:^?Y7:
                                                :!J?~.
 
-""",
-            style="bold red")
+"""
 
 
 def header_text():
@@ -83,25 +80,49 @@ def header_text():
                 style="bold magenta")
 
 
-def application_loop():
+async def keybinds():
+    global state, run
+    key = Cerberus['Display'].stdscr.getch()
+    if key != -1:
+        if key == ord('q'):
+            Cerberus['Display'].kill()
+            run = False
+        elif key == ord('/'):
+            search = await Cerberus['Display'].search_prompt(Cerberus['Config'], Cerberus['TorrentManager'])
+            await asyncio.sleep(.2)
+    return False
+
+
+async def application_loop():
     global state
-    while state is None:
-        manager = Cerberus['TorrentManager']
-        Cerberus['Display'].header.update(Panel(header_text()))
-        Cerberus['Display'].body.update(Panel(logo))
-        Cerberus['Display'].footer.update(Panel("/ To Begin A Search"))
-        with Live(Cerberus['Display']._master_layout(),
-                  refresh_per_second=4) as live:
-            time.sleep(10)
-            for _ in range(20):
-                Cerberus['Display'].body.update(Panel(manager.Manage()))
-                live.update(Cerberus['Display'].master_layout)
-                time.sleep(.4)
-        state = True
+    Cerberus['Display'].mkheader(),
+    Cerberus['Display'].mkfooter()
+    while run:
+        if state == 0:
+            Cerberus['Display'].mkheader(),
+            Cerberus['Display'].mkbody(Cerberus['TorrentManager'].Manage()),
+            Cerberus['Display'].mkfooter()
+            Cerberus['Display'].stdscr.refresh()
+            await keybinds()
+            await asyncio.sleep(.2)
+        if state == 1:
+            Cerberus['Display'].mkheader(),
+            Cerberus['Display'].mkbody(Cerberus['TorrentManager'].Manage()),
+            Cerberus['Display'].mkfooter()
+            Cerberus['Display'].stdscr.refresh()
+            await keybinds()
+            await asyncio.sleep(.2)
+        if state == 2:
+            Cerberus['Display'].mkheader(),
+            Cerberus['Display'].mkbody(Cerberus['TorrentManager'].Manage()),
+            Cerberus['Display'].mkfooter()
+            Cerberus['Display'].stdscr.refresh()
+            await keybinds()
+            await asyncio.sleep(.2)
     return "Finished"
 
-
-def main():
+ 
+async def main():
     """Enter The Realm Of Cerberus."""
     global Cerberus
 
@@ -118,11 +139,12 @@ def main():
             breakpoint()
             print(_r.text)
     else:
-        application_loop()
+        await application_loop()
+        await asyncio.sleep(.2)
     print()
     return False
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
     # Cerberus['Display'].kill()
