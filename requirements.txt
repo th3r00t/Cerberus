@@ -1,0 +1,4 @@
+requests
+libtorrent
+beautifulsoup4
+html5lib
