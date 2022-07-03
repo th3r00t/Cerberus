@@ -123,7 +123,6 @@ async def main():
     elif args.search:
         _response = Cerberus['Search'].search(args.search)
         for _r in _response:
-            breakpoint()
             print(_r.text)
     else:
         await application_loop()
