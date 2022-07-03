@@ -1,4 +1,4 @@
-requests
-libtorrent
-beautifulsoup4
-html5lib
+requests == 2.28.0
+libtorrent == 2.0.6
+beautifulsoup4 == 4.11.1
+html5lib == 1.1
