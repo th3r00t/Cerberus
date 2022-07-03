@@ -23,19 +23,6 @@ Cerberus = {
 }
 Cerberus["Config"].getconfig()
 
-test_uri = 'magnet:?xt=urn:btih:3271A48DEF3084C93B11A840C55F85CADF160C63&dn\
-    =Billy.The.Kid.2022.S01.COMPLETE.720p.AMZN.WEBRip.x264-GalaxyTV&tr\
-    =udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F\
-    %2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2F\
-    tracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.leechers\
-    -paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org\
-    %3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2F\
-    announce&tr=udp%3A%2F%2F47.ip-51-68-199.eu%3A6969%2Fannounce&tr=\
-    udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=\
-    udp%3A%2F%2F9.rarbg.to%3A2920%2Fannounce&tr=udp%3A%2F%2F\
-    tracker.pirateparty.gr%3A6969%2Fannounce&tr=udp%3A%2F%2F\
-    tracker.cyberia.is%3A6969%2Fannounce'
-
 logo = """
                             : .:: ^ ~~!7777??????????777!!~^: . .:   :
                           . ^J~ .J?~^!!~^^::............::^~~!!^!J! .77 .
@@ -121,7 +108,7 @@ async def application_loop():
             await asyncio.sleep(.2)
     return "Finished"
 
- 
+
 async def main():
     """Enter The Realm Of Cerberus."""
     global Cerberus
