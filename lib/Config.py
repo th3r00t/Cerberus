@@ -40,7 +40,7 @@ class Config:
         }
         _file["Storage"] = {
             "tv": "./tv",
-            "mov": "./mov"
+            "mv": "./mov"
         }
         with open(r"cerberus.ini", 'w') as configObj:
             _file.write(configObj)
