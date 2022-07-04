@@ -28,7 +28,6 @@ class Client:
         self.storage_maps = storagemaps
 
     async def Add(self, uri, savePath):
-        breakpoint()
         if int(savePath) == 1:
             savePath = self.storage_maps['tv']
         elif int(savePath) == 2:
