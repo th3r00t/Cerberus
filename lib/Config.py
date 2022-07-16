@@ -35,12 +35,22 @@ class Config:
         #
         _file = configparser.ConfigParser()
         _file["Endpoints"] = {
-            "tpbmv": "https://thepiratebay10.org/search/{}/1/99/201",
-            "tpbtv": "https://thepiratebay10.org/search/{}/1/99/0"
+            "tpbmv": "https://thepiratebay.rocks/search/{}/1/99/201", # Movies
+            "tpbtv": "https://thepiratebay.rocks/search/{}/1/99/0",   # Television
+            "tpbgm": "https://thepiratebay.rocks/search/{}/1/99/400", # Games
+            "tpbms": "https://thepiratebay.rocks/search/{}/1/99/100", # Music
+            "tpbab": "https://thepiratebay.rocks/search/{}/1/99/102", # Audio Books
+            "tpbeb": "https://thepiratebay.rocks/search/{}/1/99/601", # E-Books
+            "tpbcm": "https://thepiratebay.rocks/search/{}/1/99/602", # Comics
         }
         _file["Storage"] = {
             "tv": "./tv",
-            "mv": "./mov"
+            "mv": "./mov",
+            "gm": "./games",
+            "ms": "./music",
+            "ab": "./abook",
+            "eb": "./ebook",
+            "cm": "./comic"
         }
         with open(r"cerberus.ini", 'w') as configObj:
             _file.write(configObj)

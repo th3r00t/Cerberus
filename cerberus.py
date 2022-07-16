@@ -96,7 +96,6 @@ async def keybinds():
             await asyncio.sleep(.2)
     return False
 
-
 async def application_loop():
     global state
     Cerberus['Display'].mkheader(),

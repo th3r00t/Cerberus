@@ -43,6 +43,16 @@ class Search:
             ep_type_requested = "tv"
         elif type == 2:
             ep_type_requested = "mv"
+        elif type == 3:
+            ep_type_requested = "gm"
+        elif type == 4:
+            ep_type_requested = "ms"
+        elif type == 5:
+            ep_type_requested = "ab"
+        elif type == 6:
+            ep_type_requested = "eb"
+        elif type == 7:
+            ep_type_requested = "cm"
         else:
             ep_type_requested = "mv"
         for ep in self.endpoints:

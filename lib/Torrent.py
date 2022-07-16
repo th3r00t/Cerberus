@@ -32,6 +32,18 @@ class Client:
             savePath = self.storage_maps['tv']
         elif int(savePath) == 2:
             savePath = self.storage_maps['mv']
+        elif int(savePath) == 3:
+            savePath = self.storage_maps['gm']
+        elif int(savePath) == 4:
+            savePath = self.storage_maps['ms']
+        elif int(savePath) == 5:
+            savePath = self.storage_maps['ab']
+        elif int(savePath) == 6:
+            savePath = self.storage_maps['eb']
+        elif int(savePath) == 7:
+            savePath = self.storage_maps['cm']
+        else:
+            savePath = self.storage_maps['mv']
         params = {
             'save_path': savePath,
             'storage_mode': lt.storage_mode_t(2),
