@@ -24,8 +24,10 @@ from .Search import Search
 
 
 class Display:
+    """Cerberus's Main Display Class."""
 
     def __init__(self):
+        """Initializa The Display Settings."""
         self.stdscr = curses.initscr()
         self.stdscr.nodelay(1)
         self.stdscr.clear()
@@ -44,6 +46,7 @@ class Display:
         self.footer.box()
 
     def mkheader(self):
+        """Create Main U/I Header."""
         self.header.clear()
         self.print_middle_center(self.header_msg, self.header)
         self.print_middle_right("q to quit", self.header)
@@ -51,28 +54,33 @@ class Display:
         self.header.refresh()
 
     def mkbody(self, msg):
+        """Create Main U/I Body."""
         self.body.clear()
         self.body.addstr(0, 0, self.format_body(msg))
         # self.body.box()
         self.body.refresh()
 
     def mkfooter(self, msg="/ To Search"):
+        """Create Main U/I Footer."""
         self.footer.clear()
         self.footer.addstr(1, 2, msg)
         self.footer.box()
         self.footer.refresh()
 
     def print_middle_center(self, msg, window):
+        """Print Msg Aligned V & H Center."""
         _window_row, _window_col = window.getmaxyx()
         _ip = int((_window_col / 2) - (len(msg) / 2))
         window.addstr(int(_window_row / 2), _ip, msg)
 
     def print_middle_right(self, msg, window):
+        """Print Msg Aligned V Center, H Right."""
         _window_row, _window_col = window.getmaxyx()
         _ip = int(_window_col - len(msg) - 3)
         window.addstr(int(_window_row / 2), _ip, msg)
 
     async def search_prompt(self, config, torrent_manager):
+        """Cerberus Search Prompt Loop."""
         # footer = curses.newwin(3, self.cols, self.rows - 3, 0)
         prompt_window = curses.newwin(1, self.cols-20, self.rows - 2, 14)
         box = Textbox(prompt_window)
@@ -120,6 +128,7 @@ class Display:
         return choice
 
     def format_body(self, results, page=1, search=False):
+        """Cerberus Main Body Formating."""
         _msg_body = ""
         _mY, _mX = self.body.getmaxyx()
         _mY -= 2
@@ -151,6 +160,7 @@ class Display:
             return msg
 
     def kill(self):
+        """Kill The Display."""
         curses.nocbreak()
         self.stdscr.keypad(False)
         curses.echo()
