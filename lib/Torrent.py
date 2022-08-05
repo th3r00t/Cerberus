@@ -50,7 +50,7 @@ class Client:
         }
         try:
             handle = lt.add_magnet_uri(self.session, uri, params)
-            asyncio.sleep(.2)
+            await asyncio.sleep(.2)
             self.active_torrents.append(handle)
         except Exception as e:
             print(e)
