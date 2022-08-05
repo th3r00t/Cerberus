@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Cerberus, Torrent Aggregator
 # Copyright (C) 2022 th3r00t
 
