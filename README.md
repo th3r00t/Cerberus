@@ -1,4 +1,5 @@
 # Cerberus
+### Discord @ https://discord.gg/9Zz3TRS8q7
 ![Alt text](./downloader.png?raw=true "Cerberus")
  A simple, fast, and lightweight torrent aggregator.
  Written in python leveraging C libs like libtorrent, and curses
