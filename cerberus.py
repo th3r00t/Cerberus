@@ -26,7 +26,7 @@ from lib.Config import Config
 from lib.Search import Search
 
 locale.setlocale(locale.LC_ALL, '')
-code = locale.getpreferredencoding()
+icode = locale.getpreferredencoding()
 state = 0
 keypress = None
 config = Config()
@@ -96,6 +96,7 @@ async def keybinds():
             await asyncio.sleep(.2)
     return False
 
+
 async def application_loop():
     global state
     Cerberus['Display'].mkheader(),
@@ -130,7 +131,7 @@ async def main():
     global Cerberus
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--config")
+    parser.add_argument("-c",  "--config")
     parser.add_argument("-s", "--search")
     args = parser.parse_args()
 
@@ -140,6 +141,7 @@ async def main():
         _response = Cerberus['Search'].search(args.search)
         for _r in _response:
             print(_r.text)
+
     else:
         await application_loop()
         await asyncio.sleep(.2)
